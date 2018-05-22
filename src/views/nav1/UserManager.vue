@@ -1,5 +1,6 @@
 <template>
 	<section>
+		<div class="addUser"><el-button type="primary" @click="addUser()">添加用户</el-button></div>
 		<template>
 			<el-table
 			:data="tableData"
@@ -11,21 +12,21 @@
 				width="180">
 			</el-table-column>
 			<el-table-column
-				prop="wxName"
-				label="姓名"
+				prop="name"
+				label="账号"
 				width="180">
-			</el-table-column>
-			<el-table-column
-				prop="sex"
-				label="性别">
 			</el-table-column>
 			<el-table-column
 				prop="grade"
 				label="等级">
 			</el-table-column>
 			<el-table-column
+				prop="address"
+				label="地址">
+			</el-table-column>
+			<el-table-column
 				prop="createTime"
-				label="关注时间">
+				label="最后一次操作时间">
 			</el-table-column>
 			<el-table-column label="操作">
 			<template scope="scope">
@@ -37,11 +38,11 @@
 			</el-table>
 		</template>
 		<el-dialog
-			title="设置权限"
+			:title="title"
 			:visible.sync="dialogVisible"
 			width="30%"
 			>
-			<user-manager :userId="userId" @closeSetGrade="closeSetGrade"></user-manager>
+			<user-manager :userId="userId"  @closeSetGrade="closeSetGrade"></user-manager>
 		</el-dialog>
 	</section>
 </template>
@@ -52,6 +53,7 @@ import UserManager from '../../components/UserManager';
 		data() {
 			return {
 				tableData: [],
+				title: '添加用户',
 				dialogVisible: false,
 				userId:0
 			}
@@ -69,7 +71,12 @@ import UserManager from '../../components/UserManager';
 			   })
 			},
 			handleEdit(index,item){
+				this.title = '修改用户';
 				this.userId = item.id;
+				this.dialogVisible=true;
+			},
+			addUser(index){
+				this.title = '添加用户';
 				this.dialogVisible=true;
 			},
 			closeSetGrade(){

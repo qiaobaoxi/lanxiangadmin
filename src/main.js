@@ -29,9 +29,9 @@ const router = new VueRouter({
 // 添加请求拦截器
 axios.interceptors.response.use(function (config) {
   // 在发送请求之前做些什么
-  if(!VueCookies.get('admin')){
+  if(config.data.msg===2000){
     sessionStorage.removeItem('user');
-    router.push('/login')
+    return router.push('/login')
   }
   return config
 }, function (error) {

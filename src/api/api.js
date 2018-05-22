@@ -14,11 +14,14 @@ export const removeUser = params => { return axios.get(`${base}/user/remove`, { 
 
 export const batchRemoveUser = params => { return axios.get(`${base}/user/batchremove`, { params: params }); };
 
+//编辑用户
 export const editUser = params => { return axios.get(`${base}/user/edit`, { params: params }); };
+
+//addUser
 
 export const setUserJsc = params => { return axios.post(`${base1}/user/setUserJsc`, params).then(res =>  res.data); };
 
-export const addUser = params => { return axios.get(`${base}/user/add`, { params: params }); };
+export const addUserOrUpdate = params => { return axios.post(`${base1}/user/addUserOrUpdate`, params).then(res =>  res.data); };
 
 export const addJsc = params => { return axios.post(`${base1}/jurisdiction/addJsc`, params).then(res =>  res.data); };
 
